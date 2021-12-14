@@ -5,14 +5,14 @@
 <script lang="ts">
 import { log } from 'three';
 import { Component, Vue } from 'vue-property-decorator';
-import Service from './service';
+import DemoService from './service/demo.service';
 
 @Component({
   name: 'App',
 })
 export default class App extends Vue {
   mounted(): void {
-    const instance = new Service();
+    const instance = new DemoService();
     instance.init();
   }
 }

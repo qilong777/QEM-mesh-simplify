@@ -4,11 +4,10 @@ import { simplify } from '../meshSimplify/simplify';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader';
-import { BufferGeometry, Float32BufferAttribute, Group, SphereBufferGeometry } from 'three';
-import * as Comlink from 'comlink';
+import { BufferGeometry, Float32BufferAttribute, Group } from 'three';
 const bunny = require('bunny');
 const wireframe = false;
-export default class Service {
+export default class DemoService {
   private scene = new THREE.Scene();
   private renderer = new THREE.WebGLRenderer({ antialias: true });
   private camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
@@ -57,7 +56,6 @@ export default class Service {
     const group = new Group();
     const group1 = new Group();
     group.translateY(100);
-    // group.scale.set(5, 5, 5);
 
     this.scene.add(group);
     this.scene.add(group1);
@@ -100,11 +98,6 @@ export default class Service {
       triangles,
       factors.map(ele => ele / 100),
     );
-
-    // const attrArr = await this.worker.simplify(
-    //   array,
-    //   // factors.map(ele => ele / 100),
-    // );
 
     console.timeEnd('simplify');
 

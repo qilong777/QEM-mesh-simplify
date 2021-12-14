@@ -36,10 +36,13 @@ export class Matrix {
     this.x32 = x32;
     this.x33 = x33;
   }
+
+  // 相当于vTQv
   quadricError(v: Vector): number {
     return v.x * this.x00 * v.x + v.y * this.x10 * v.x + v.z * this.x20 * v.x + this.x30 * v.x + v.x * this.x01 * v.y + v.y * this.x11 * v.y + v.z * this.x21 * v.y + this.x31 * v.y + v.x * this.x02 * v.z + v.y * this.x12 * v.z + v.z * this.x22 * v.z + this.x32 * v.z + v.x * this.x03 + v.y * this.x13 + v.z * this.x23 + this.x33;
   }
 
+  // 尝试获取Pair对最小误差的v向量
   quadricVector(): Vector {
     const b = new Matrix(this.x00, this.x01, this.x02, this.x03, this.x10, this.x11, this.x12, this.x13, this.x20, this.x21, this.x22, this.x23, 0, 0, 0, 1);
     return b.inverse().mulPosition(new Vector(0, 0, 0));
@@ -56,6 +59,7 @@ export class Matrix {
     return new Vector(x, y, z);
   }
 
+  // 计算矩阵的行列式
   determinant(): number {
     return (
       this.x00 * this.x11 * this.x22 * this.x33 -
@@ -85,6 +89,7 @@ export class Matrix {
     );
   }
 
+  // 计算矩阵的逆矩阵，矩阵如果不可逆，元素都为NaN
   inverse(): Matrix {
     const m = new Matrix();
     const r = 1 / this.determinant();

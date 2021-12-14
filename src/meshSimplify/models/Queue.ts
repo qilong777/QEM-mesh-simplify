@@ -1,8 +1,6 @@
 import FastPriorityQueue from './FastPriorityQueue';
 import { Pair } from './Pair';
 
-// export type PriorityQueue = Pair[];
-
 export class PriorityQueue extends FastPriorityQueue<Pair> {
   constructor() {
     super();

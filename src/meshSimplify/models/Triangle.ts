@@ -4,6 +4,7 @@ import { Vector } from './Vector';
 export class Triangle {
   constructor(public v1: Vector, public v2: Vector, public v3: Vector) {}
 
+  // 获取误差矩阵
   quadric(): Matrix {
     const n = this.normal();
     const { x, y, z } = this.v1;
